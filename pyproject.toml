@@ -31,6 +31,10 @@ pandas = "*"
 python-dateutil = "*"
 langchain-milvus = "*"
 
+fastapi = "*"
+uvicorn = "*"
+langgraph-checkpoint-sqlite = "*"
+
 presidio-analyzer = "*"
 presidio-anonymizer = "*"
 spacy = "*"

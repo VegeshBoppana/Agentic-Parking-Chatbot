@@ -27,3 +27,7 @@ presidio-analyzer
 presidio-anonymizer
 spacy
 langchain-milvus
+
+fastapi
+uvicorn
+langgraph-checkpoint-sqlite
