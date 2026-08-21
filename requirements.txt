@@ -6,6 +6,7 @@ langchain-classic
 langgraph
 
 pymilvus
+python-dateutil
 
 faker
 fpdf2
@@ -21,3 +22,7 @@ pandas
 
 pytest
 pytest-mock
+
+presidio-analyzer
+presidio-anonymizer
+spacy
