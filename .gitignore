@@ -1,0 +1,16 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+dist/
+build/
+*.db
+*.db-*
+stage1_rag_chatbot/data/policies/*.pdf
+!stage1_rag_chatbot/data/policies/.gitkeep
+.vscode/
+.idea/
+stage1_rag_chatbot/observability/*.sqlite

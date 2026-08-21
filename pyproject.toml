@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "parking-chatbot"
+version = "0.1.0"
+description = "Intelligent parking reservation chatbot - RAG + Human-in-the-loop + MCP + LangGraph orchestration"
+authors = ["Vegesh"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+langchain = "^1.0"
+langchain-openai = "*"
+langchain-community = "*"
+langchain-text-splitters = "*"
+langchain-classic = "*"
+langgraph = "*"
+
+pymilvus = "*"
+
+faker = "*"
+fpdf2 = "*"
+pypdf = "*"
+
+trulens = "*"
+trulens-apps-langchain = "*"
+trulens-providers-openai = "*"
+trulens-dashboard = "*"
+
+python-dotenv = "*"
+pandas = "*"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "*"
+pytest-mock = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
