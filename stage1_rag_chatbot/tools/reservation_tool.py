@@ -1,5 +1,4 @@
-"""Tool to collect reservation details, check for conflicts uisng vehicle number, and submit a pending reservation."""
-
+"""Tool to collect reservation details, check for conflicts using vehicle number, and submit a pending reservation."""
 from datetime import datetime, timezone
 
 from dateutil import parser as date_parser
@@ -7,6 +6,7 @@ from langchain.tools import tool
 
 from stage1_rag_chatbot.db.sql_store import find_overlapping_reservations, insert_reservation
 from shared.logging_utils import get_logger
+from stage2_hitl_agent.agent import escalate_reservation
 
 logger = get_logger(__name__)
 
@@ -17,14 +17,7 @@ def _to_iso(value: str) -> str:
 
 
 @tool
-def submit_reservation_request(
-    name: str,
-    surname: str,
-    car_number: str,
-    zone: str,
-    start_time: str,
-    end_time: str,
-) -> str:
+def submit_reservation_request(name: str,surname: str,car_number: str,zone: str,start_time: str,end_time: str,) -> str:
     """Submit a parking reservation request once you have collected the customer's
     name, surname, car/vehicle number, preferred zone (A, B, C, or D), and the
     reservation period as start_time and end_time. Dates/times can be in any
@@ -55,7 +48,7 @@ def submit_reservation_request(
             "Please choose a different time or cancel the existing reservation first."
         )
 
-    reservation_id = insert_reservation({
+    reservation = {
         "name": name,
         "surname": surname,
         "car_number": car_number,
@@ -64,7 +57,11 @@ def submit_reservation_request(
         "end_time": end_iso,
         "status": "pending",
         "created_at": datetime.now(timezone.utc).isoformat(),
-    })
+    }
+    reservation_id = insert_reservation(reservation)
+    reservation["reservation_id"] = reservation_id
+
+    escalate_reservation(reservation)
 
     logger.info(f"Reservation {reservation_id} submitted for car {car_number}")
     return (

@@ -121,3 +121,16 @@ def get_all_reservations() -> list[dict]:
     with get_connection() as conn:
         rows = conn.execute("SELECT * FROM reservations").fetchall()
     return [dict(r) for r in rows]
+
+def update_reservation_status(reservation_id: str, status: str) -> None:
+    with get_connection() as conn:
+        conn.execute(
+            "UPDATE reservations SET status = ? WHERE reservation_id = ?",
+            (status, reservation_id),
+        )
+
+
+def get_reservations_by_status(status: str) -> list[dict]:
+    with get_connection() as conn:
+        rows = conn.execute("SELECT * FROM reservations WHERE status = ?", (status,)).fetchall()
+    return [dict(r) for r in rows]
