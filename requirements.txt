@@ -26,3 +26,4 @@ pytest-mock
 presidio-analyzer
 presidio-anonymizer
 spacy
+langchain-milvus

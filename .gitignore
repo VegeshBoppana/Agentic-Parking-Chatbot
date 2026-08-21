@@ -14,3 +14,4 @@ stage1_rag_chatbot/data/policies/*.pdf
 .vscode/
 .idea/
 stage1_rag_chatbot/observability/*.sqlite
+volumes/

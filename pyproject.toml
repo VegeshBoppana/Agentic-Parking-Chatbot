@@ -28,6 +28,12 @@ trulens-dashboard = "*"
 
 python-dotenv = "*"
 pandas = "*"
+python-dateutil = "*"
+langchain-milvus = "*"
+
+presidio-analyzer = "*"
+presidio-anonymizer = "*"
+spacy = "*"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
