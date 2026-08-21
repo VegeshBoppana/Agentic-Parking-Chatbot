@@ -9,8 +9,8 @@ dist/
 build/
 *.db
 *.db-*
-stage1_rag_chatbot/data/policies/*.pdf
-!stage1_rag_chatbot/data/policies/.gitkeep
+git add stage1_rag_chatbot/data/policies/*.pdf
+git status
 .vscode/
 .idea/
 stage1_rag_chatbot/observability/*.sqlite
