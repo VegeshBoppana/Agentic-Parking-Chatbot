@@ -1,0 +1,7 @@
+{
+  "graphs": {
+    "orchestrator": "./stage4_orchestration/studio_graph.py:graph"
+  },
+  "env": ".env",
+  "python_version": "3.11"
+}
