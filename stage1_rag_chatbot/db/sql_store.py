@@ -47,6 +47,10 @@ def create_tables() -> None:
                 created_at TEXT NOT NULL
             )
         """)
+        try:
+            conn.execute("ALTER TABLE reservations ADD COLUMN orchestrator_thread_id TEXT")
+        except Exception:
+            pass  # column already exists
     logger.info("parking_spaces and reservations tables ready")
 
 
@@ -149,3 +153,7 @@ def get_reservations_by_car_number(car_number: str) -> list[dict]:
             "SELECT * FROM reservations WHERE car_number = ? ORDER BY created_at DESC", (car_number,)
         ).fetchall()
     return [dict(r) for r in rows]
+
+def set_orchestrator_thread(reservation_id: str, thread_id: str) -> None:
+    with get_connection() as conn:
+        conn.execute("UPDATE reservations SET orchestrator_thread_id = ? WHERE reservation_id = ?",(thread_id, reservation_id),)

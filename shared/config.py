@@ -35,3 +35,6 @@ ADMIN_EMAIL = _get_env("ADMIN_EMAIL", required=True)
 
 HITL_CHECKPOINT_DB_PATH = str(PROJECT_ROOT / _get_env("HITL_CHECKPOINT_DB_PATH", "stage2_hitl_agent/hitl_checkpoints.db"))
 HITL_API_BASE_URL = _get_env("HITL_API_BASE_URL", "http://localhost:8000")
+
+ORCHESTRATOR_CHECKPOINT_DB_PATH = str(PROJECT_ROOT / _get_env("ORCHESTRATOR_CHECKPOINT_DB_PATH", "stage4_orchestration/orchestrator_checkpoints.db"))
+ORCHESTRATOR_API_BASE_URL = _get_env("ORCHESTRATOR_API_BASE_URL", "http://localhost:8001")
