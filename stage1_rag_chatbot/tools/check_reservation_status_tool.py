@@ -2,10 +2,18 @@ from langchain.tools import tool
 
 from stage1_rag_chatbot.db.sql_store import get_reservation_by_id, get_reservations_by_car_number
 
+STATUS_LABELS = {
+    "pending": "pending (not yet sent to the administrator)",
+    "awaiting_approval": "waiting for administrator review",
+    "approved": "approved",
+    "rejected": "rejected",
+}
+
 
 def _format(r: dict) -> str:
+    status_text = STATUS_LABELS.get(r["status"], r["status"])
     return (
-        f"Reservation {r['reservation_id']} - Status: {r['status']}\n"
+        f"Reservation {r['reservation_id']} - Status: {status_text}\n"
         f"{r['name']} {r['surname']}, vehicle {r['car_number']}, Zone {r['zone']}, "
         f"{r['start_time']} to {r['end_time']}"
     )
