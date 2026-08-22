@@ -29,7 +29,6 @@ def _make_space(index: int) -> dict:
     space_id = f"{zone}{floor}-{index:04d}"
     spot_number = f"{zone}{floor}-{random.randint(1, 50):03d}"
 
-    price = BASE_PRICE_PER_HOUR[vehicle_type] * random.uniform(0.9, 1.2)
     is_available = random.random() < 0.7  # ~70% available at any given time
 
     last_updated = (datetime.now() - timedelta(minutes=random.randint(0, 120))).isoformat()
@@ -40,7 +39,7 @@ def _make_space(index: int) -> dict:
         "floor": floor,
         "spot_number": spot_number,
         "vehicle_type": vehicle_type,
-        "price_per_hour": round(price, 2),
+        "price_per_hour": BASE_PRICE_PER_HOUR[vehicle_type],
         "is_available": int(is_available),
         "last_updated": last_updated,
     }

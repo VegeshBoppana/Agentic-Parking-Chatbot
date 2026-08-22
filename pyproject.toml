@@ -35,6 +35,9 @@ fastapi = "*"
 uvicorn = "*"
 langgraph-checkpoint-sqlite = "*"
 
+langchain-mcp-adapters = "*"
+mcp = "*"
+
 presidio-analyzer = "*"
 presidio-anonymizer = "*"
 spacy = "*"

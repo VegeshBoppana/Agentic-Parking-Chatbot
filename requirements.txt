@@ -31,3 +31,6 @@ langchain-milvus
 fastapi
 uvicorn
 langgraph-checkpoint-sqlite
+
+langchain-mcp-adapters
+mcp
