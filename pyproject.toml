@@ -39,6 +39,9 @@ presidio-analyzer = "*"
 presidio-anonymizer = "*"
 spacy = "*"
 
+langchain-mcp-adapters = "*"
+mcp = "*"
+
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
 pytest-mock = "*"
