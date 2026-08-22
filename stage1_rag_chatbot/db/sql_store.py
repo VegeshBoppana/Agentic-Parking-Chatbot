@@ -134,3 +134,18 @@ def get_reservations_by_status(status: str) -> list[dict]:
     with get_connection() as conn:
         rows = conn.execute("SELECT * FROM reservations WHERE status = ?", (status,)).fetchall()
     return [dict(r) for r in rows]
+
+
+def get_reservation_by_id(reservation_id: str) -> dict | None:
+    with get_connection() as conn:
+        row = conn.execute(
+            "SELECT * FROM reservations WHERE reservation_id = ?", (reservation_id,)
+        ).fetchone()
+    return dict(row) if row else None
+
+def get_reservations_by_car_number(car_number: str) -> list[dict]:
+    with get_connection() as conn:
+        rows = conn.execute(
+            "SELECT * FROM reservations WHERE car_number = ? ORDER BY created_at DESC", (car_number,)
+        ).fetchall()
+    return [dict(r) for r in rows]

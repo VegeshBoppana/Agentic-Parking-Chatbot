@@ -8,6 +8,7 @@ from stage1_rag_chatbot.tools.search_policies_tool import search_parking_policie
 from stage1_rag_chatbot.tools.availability_tool import check_parking_availability
 from stage1_rag_chatbot.tools.reservation_tool import submit_reservation_request
 from stage1_rag_chatbot.guardrails.pii_filter import detect_pii, redact_pii
+from stage1_rag_chatbot.tools.check_reservation_status_tool import check_reservation_status
 
 SYSTEM_PROMPT = f"""You are the SkyPark parking assistant chatbot.
 
@@ -24,6 +25,8 @@ You help customers with three things:
    from the conversation: name, surname, car/vehicle number, zone, start_time, and
    end_time. Ask the customer for anything missing before calling
    submit_reservation_request. Never guess or invent any of these details.
+4. Checking the status of an existing reservation using check_reservation_status -
+   use the customer's car number if they don't remember their reservation ID.
 
 Be concise and friendly. If asked something unrelated to SkyPark parking, politely
 redirect the customer back to parking-related topics.
@@ -33,7 +36,7 @@ _checkpointer = InMemorySaver()
 
 agent = create_agent(
     model=get_chat_model(),
-    tools=[search_parking_policies, check_parking_availability, submit_reservation_request],
+    tools=[search_parking_policies, check_parking_availability, submit_reservation_request, check_reservation_status],
     system_prompt=SYSTEM_PROMPT,
     checkpointer=_checkpointer,
 )
