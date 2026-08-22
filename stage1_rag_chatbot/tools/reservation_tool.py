@@ -6,7 +6,7 @@ from langchain.tools import tool
 
 from stage1_rag_chatbot.db.sql_store import find_overlapping_reservations, insert_reservation
 from shared.logging_utils import get_logger
-from stage2_hitl_agent.agent import escalate_reservation
+
 
 logger = get_logger(__name__)
 
@@ -60,8 +60,6 @@ def submit_reservation_request(name: str,surname: str,car_number: str,zone: str,
     }
     reservation_id = insert_reservation(reservation)
     reservation["reservation_id"] = reservation_id
-
-    escalate_reservation(reservation)
 
     logger.info(f"Reservation {reservation_id} submitted for car {car_number}")
     return (
