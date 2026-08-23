@@ -1,4 +1,5 @@
 {
+  "dependencies": ["."],
   "graphs": {
     "orchestrator": "./stage4_orchestration/studio_graph.py:graph"
   },

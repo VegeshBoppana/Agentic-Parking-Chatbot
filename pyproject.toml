@@ -45,6 +45,7 @@ spacy = "*"
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
 pytest-mock = "*"
+langgraph-cli = {extras = ["inmem"], version = "^0.4.31"}
 
 [build-system]
 requires = ["poetry-core"]

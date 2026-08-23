@@ -16,3 +16,4 @@ git status
 stage1_rag_chatbot/observability/*.sqlite
 volumes/
 stage3_mcp_server/data/
+.langgraph_api/
