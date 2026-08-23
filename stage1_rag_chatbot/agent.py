@@ -45,13 +45,7 @@ agent = create_agent(
 
 
 def chat(user_input: str, thread_id: str = "default") -> str:
-    """Sends one user message to the agent and returns the (PII-redacted) reply."""
+    """Sends one user message to the agent and returns the reply."""
     config = {"configurable": {"thread_id": thread_id}}
     result = agent.invoke({"messages": [HumanMessage(content=user_input)]}, config=config)
-
-    all_messages = result["messages"]
-    human_text = " ".join(m.content for m in all_messages if isinstance(m, HumanMessage))
-    allowlist = {item["text"] for item in detect_pii(human_text)}
-
-    reply = all_messages[-1].content
-    return redact_pii(reply, allowlist=allowlist)
+    return result["messages"][-1].content
