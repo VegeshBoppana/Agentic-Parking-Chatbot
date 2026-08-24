@@ -8,8 +8,6 @@ logger = get_logger(__name__)
 
 
 def data_recording_node(state: OrchestratorState) -> OrchestratorState:
-    if state["decision"] != "approve":
-        return state
 
     reservation = state["reservation"]
     try:
