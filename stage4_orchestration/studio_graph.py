@@ -10,6 +10,8 @@ from stage4_orchestration.state import OrchestratorState
 def _route_after_user_interaction(state: OrchestratorState) -> str:
     return "administrator_approval" if state.get("reservation") else END
 
+def _route_after_decision(state: OrchestratorState) -> str:
+    return "data_recording" if state.get("decision") == "approve" else END
 
 graph = StateGraph(OrchestratorState)
 graph.add_node("user_interaction", user_interaction_node)
@@ -23,5 +25,8 @@ graph.add_conditional_edges(
     {"administrator_approval": "administrator_approval", END: END},
 )
 graph.add_edge("administrator_approval", "wait_for_decision")
-graph.add_edge("wait_for_decision", "data_recording")
+graph.add_conditional_edges(
+    "wait_for_decision", _route_after_decision,
+    {"data_recording": "data_recording", END: END},
+)
 graph.add_edge("data_recording", END)
